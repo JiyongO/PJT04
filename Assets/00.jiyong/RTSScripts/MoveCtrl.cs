@@ -31,33 +31,21 @@ public class MoveCtrl : MonoBehaviour
                 Debug.Log("A pressed");
                 return;
             }
-            //if (isKeyA_Pressed && Input.GetMouseButtonDown(0))
-            //{
-            //    Debug.Log("Soldier Attacking");
-            //    isKeyA_Pressed = false;
-            //    isMoving = false;
-            //    Move();
-            //}
             if (isKeyA_Pressed)
             {
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(1))
                 {
                     Debug.Log("Soldier Attacking");
                     isKeyA_Pressed = false;
                     isMoving = false;
                     Move();
                 }
-                else if (Input.GetMouseButtonDown(1))
+                else if (Input.GetMouseButtonDown(0))
                 {
                     isKeyA_Pressed = false;
                     Debug.Log("A released");
                 }
             }
-            //if (isKeyA_Pressed && Input.GetMouseButtonDown(1))
-            //{
-            //    isKeyA_Pressed = false;
-            //    Debug.Log("A released");
-            //}
             else if (!isKeyA_Pressed && Input.GetMouseButtonDown(1))
             {
                 Debug.Log("Soldier Move");

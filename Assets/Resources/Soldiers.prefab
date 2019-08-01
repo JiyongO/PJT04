@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3856499252008787417}
   - component: {fileID: 3856499252008787416}
-  - component: {fileID: 5193307232240272125}
   - component: {fileID: 8872505208335358975}
   - component: {fileID: 4913210206265090665}
   - component: {fileID: 6523162543755778611}
   - component: {fileID: 4438999760054778546}
+  - component: {fileID: 5193307232240272125}
   m_Layer: 12
   m_Name: Soldiers
   m_TagString: PLAYER
@@ -64,19 +64,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &5193307232240272125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3856499252008787418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92cb42219be57014497e0059634c06a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectionCircle: {fileID: 0}
 --- !u!114 &8872505208335358975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,6 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMoving: 0
+  isKeyA_Pressed: 0
 --- !u!114 &4913210206265090665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,6 +118,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 4990280859108858457}
   healthCanvas: {fileID: 1358207578972450302}
+--- !u!114 &5193307232240272125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3856499252008787418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92cb42219be57014497e0059634c06a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionCircle: {fileID: 0}
 --- !u!1 &3856499252338133144
 GameObject:
   m_ObjectHideFlags: 0

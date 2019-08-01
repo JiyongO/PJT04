@@ -305,9 +305,9 @@ GameObject:
   - component: {fileID: 2165635974899482438}
   - component: {fileID: 1456143826302306669}
   - component: {fileID: 3041115735066934141}
-  - component: {fileID: 432856829938106367}
   - component: {fileID: 207100667}
   - component: {fileID: 207100668}
+  - component: {fileID: 432856829938106367}
   m_Layer: 12
   m_Name: CannonRTS
   m_TagString: PLAYER
@@ -428,19 +428,6 @@ CapsuleCollider:
   m_Height: 1.5
   m_Direction: 1
   m_Center: {x: -0.00000023844987, y: 0.4, z: -0.008400559}
---- !u!114 &432856829938106367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4969859285851717753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92cb42219be57014497e0059634c06a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectionCircle: {fileID: 0}
 --- !u!114 &207100667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,6 +454,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 088561d2d933669488fb79020beea0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMoving: 0
+  isKeyA_Pressed: 0
+--- !u!114 &432856829938106367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4969859285851717753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92cb42219be57014497e0059634c06a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionCircle: {fileID: 0}
 --- !u!1 &4970054272526027193
 GameObject:
   m_ObjectHideFlags: 0
