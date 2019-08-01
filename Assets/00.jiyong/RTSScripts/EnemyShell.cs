@@ -6,6 +6,7 @@ public class EnemyShell : MonoBehaviour
 {
     public GameObject explosion;
     float expRadius = 0.3f;
+    Collider[] colliders;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +27,11 @@ public class EnemyShell : MonoBehaviour
 
             if (Physics.CheckSphere(transform.position, expRadius, 1 << LayerMask.NameToLayer("PLAYER")))
             {
-                // Do Damage
+                colliders = Physics.OverlapSphere(transform.position, expRadius, LayerMask.GetMask("PLAYER"));
+                foreach (var col in colliders)
+                {
+                    col.SendMessage("OnDamage");
+                }
                 Debug.Log("60mm : Do Damage to Player");
 
             }
