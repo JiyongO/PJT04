@@ -9,7 +9,7 @@ public class ProductManager : MonoBehaviour
 
     public void MakeUnit(string unitName)
     {
-        Debug.Log("makeUnit");
+        Debug.Log("makeUnit "+ unitName);
         unit = Resources.Load<GameObject>(unitName);
         Instantiate(unit, startTr.position, Quaternion.identity);
     }

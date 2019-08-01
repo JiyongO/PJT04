@@ -11,6 +11,9 @@ public class MoveCtrl : MonoBehaviour
     RaycastHit hit;
     float maxDist = 100f;
     LayerMask layerMaskTerrain;
+    public bool isMoving;
+    [SerializeField]
+    bool isKeyA_Pressed;
     void Start()
     {
         nmAgent = GetComponent<NavMeshAgent>();
@@ -20,18 +23,65 @@ public class MoveCtrl : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1) && selectableScript.selectionCircle != null)
+        if (selectableScript.selectionCircle != null)
         {
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, maxDist, 1 << layerMaskTerrain))
+            if (Input.GetKeyDown(KeyCode.A))
             {
-                nmAgent.SetDestination(hit.point);
-                Debug.Log("Move");
+                isKeyA_Pressed = true;
+                Debug.Log("A pressed");
+                return;
             }
+            //if (isKeyA_Pressed && Input.GetMouseButtonDown(0))
+            //{
+            //    Debug.Log("Soldier Attacking");
+            //    isKeyA_Pressed = false;
+            //    isMoving = false;
+            //    Move();
+            //}
+            if (isKeyA_Pressed)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Debug.Log("Soldier Attacking");
+                    isKeyA_Pressed = false;
+                    isMoving = false;
+                    Move();
+                }
+                else if (Input.GetMouseButtonDown(1))
+                {
+                    isKeyA_Pressed = false;
+                    Debug.Log("A released");
+                }
+            }
+            //if (isKeyA_Pressed && Input.GetMouseButtonDown(1))
+            //{
+            //    isKeyA_Pressed = false;
+            //    Debug.Log("A released");
+            //}
+            else if (!isKeyA_Pressed && Input.GetMouseButtonDown(1))
+            {
+                Debug.Log("Soldier Move");
+                isMoving = true;
+                Move();
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                isMoving = false;
+                nmAgent.isStopped = true;
+            }
+        }
+    }
+    void Move()
+    {
+        nmAgent.isStopped = false;
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit, maxDist, 1 << layerMaskTerrain))
+        {
+            nmAgent.SetDestination(hit.point);
         }
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("P : Enter Trigger "+other.name);
+        Debug.Log("P_Soldier : Enter Trigger " + other.name);
     }
 }

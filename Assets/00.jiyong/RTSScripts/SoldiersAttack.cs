@@ -10,6 +10,8 @@ public class SoldiersAttack : MonoBehaviour
     Animator[] anim;
     Collider[] colliders;
     int layerPlayer;
+    MoveCtrl moveCtrl;
+    float speed = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -17,12 +19,16 @@ public class SoldiersAttack : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         anim = GetComponentsInChildren<Animator>();
         layerPlayer = LayerMask.GetMask("ENEMY");
+        moveCtrl = GetComponent<MoveCtrl>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!moveCtrl.isMoving)
+        {
             Attack(layerPlayer);
+        }
     }
     private void OnDrawGizmosSelected()
     {
@@ -47,7 +53,7 @@ public class SoldiersAttack : MonoBehaviour
         }
         else
         {
-            navMeshAgent.speed = 0.3f;
+            navMeshAgent.speed = speed;
             foreach (var animator in anim)
             {
                 animator.SetBool("Fire", false);
