@@ -6,6 +6,17 @@ using UnityEngine.UI;
 public class ArtilleryHealth : MonoBehaviour
 {
     public Image health;
+    public Canvas healthCanvas;
+    Quaternion startRot;
+    private void Start()
+    {
+        startRot = healthCanvas.transform.rotation;
+
+    }
+    void Update()
+    {
+        healthCanvas.transform.rotation = startRot;
+    }
     void OnDamage()
     {
         if (health.fillAmount > 0)
