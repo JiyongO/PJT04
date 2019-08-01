@@ -47,7 +47,7 @@ public class SoldierAttack : MonoBehaviour
             Debug.DrawRay(ray.origin, ray.direction, Color.red);
             AttackStart();
             Debug.Log("hit");
-
+            
         }
         else if(!Physics.CheckSphere(transform.position, 1f, 1 << layerMaskEnemy))
         {

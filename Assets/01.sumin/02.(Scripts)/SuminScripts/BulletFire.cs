@@ -48,10 +48,10 @@ public class BulletFire : MonoBehaviour
         {
             start_Pos = GetComponent<Transform>();
             end_Pos   = GameObject.FindGameObjectWithTag("ENEMY").GetComponent<Transform>();
-            enemyTr   = GameObject.FindGameObjectWithTag("ENEMY").GetComponent<Transform>();
+            //enemyTr   = GameObject.FindGameObjectWithTag("ENEMY").GetComponent<Transform>();
             
             //적을 LookAt 할 때 x축, z축을 고정시킴
-            targetPos = new Vector3(enemyTr.position.x, tr.position.y, enemyTr.position.z);
+            targetPos = new Vector3(end_Pos.position.x, tr.position.y, end_Pos.position.z);
             tr.LookAt(targetPos);
             Debug.Log("적찾음");
             moveCtrl.nmAgent.speed = 0f;
@@ -71,6 +71,7 @@ public class BulletFire : MonoBehaviour
 
     public void Shoot(float height)
     {
+        //대포 쏠때 딜레이 시간
         if (timeAfter > delay)
         {
             timeAfter = 0f;
@@ -116,7 +117,7 @@ public class BulletFire : MonoBehaviour
         {
             //폭탄이 최종적으로 떨어질 위치값 계산
             this.elapsed_time += Time.deltaTime;
-            var tx = startPos.x + this.tx * elapsed_time;
+            var tx = startPos.x + this.tx * elapsed_time; 
             var ty = startPos.y + this.ty * elapsed_time - 0.5f * g * elapsed_time * elapsed_time;
             var tz = startPos.z + this.tz * elapsed_time;
             var tpos = new Vector3(tx, ty, tz);
