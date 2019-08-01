@@ -1,0 +1,48 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Shell : MonoBehaviour
+{
+    public GameObject explosion;
+    float expRadius = 0.3f;
+    Collider[] colliders;
+    // Start is called before the first frame update
+    void Start()
+    {
+        Debug.LogFormat("nametoLayer : {0}, Getmask : {1}",LayerMask.NameToLayer("ENEMY"), LayerMask.GetMask("ENEMY"));
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == ("ENEMY") || other.tag == "TERRAIN")
+        {
+            Instantiate(explosion, transform.position + (Vector3.up * 0.1f), Quaternion.identity);
+            //Debug.Log("60mm hit something");
+
+            if (Physics.CheckSphere(transform.position, expRadius, 1 << LayerMask.NameToLayer("ENEMY")))
+            {
+                colliders = Physics.OverlapSphere(transform.position, expRadius, LayerMask.GetMask("ENEMY"));
+                foreach (var col in colliders)
+                {
+                    col.SendMessage("OnDamage");
+                }
+                Debug.Log("Shell : Do Damage to Enemy");
+
+            }
+
+            Destroy(gameObject, 2f);
+        }
+        Destroy(this.gameObject, 3f);
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, expRadius);
+    }
+}
