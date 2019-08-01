@@ -454,6 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 1363355744}
+  healthCanvas: {fileID: 855514199}
 --- !u!114 &207100668
 MonoBehaviour:
   m_ObjectHideFlags: 0

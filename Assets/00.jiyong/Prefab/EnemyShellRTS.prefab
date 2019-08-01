@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7476555985098229391}
   - component: {fileID: 904680660526475604}
   m_Layer: 0
-  m_Name: 60mmRTS
+  m_Name: EnemyShellRTS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
