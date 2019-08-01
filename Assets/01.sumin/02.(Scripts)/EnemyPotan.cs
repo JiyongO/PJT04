@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Potan : MonoBehaviour
+public class EnemyPotan : MonoBehaviour
 {
     public int potanDamage = 50;
     public GameObject explosion;
 
     private float expRadius = 0.3f;
-    private EnemyHpUICannons enemyUI;
+    private HpUICannon hpUICannon;
+    private HpUISoldier hpUISoldier;
     // Start is called before the first frame update
     void Start()
     {
-        enemyUI = GetComponent<EnemyHpUICannons>();
+        hpUICannon = GetComponent<HpUICannon>();
+        hpUISoldier = GetComponent<HpUISoldier>();
+
     }
 
     // Update is called once per frame
@@ -30,8 +33,20 @@ public class Potan : MonoBehaviour
             if (Physics.CheckSphere(transform.position, expRadius, 1 << LayerMask.NameToLayer("PLAYER")))
             {
                 // Do Damage
-                Debug.Log("60mm : Do Damage to Player");
+                HpUICannon hpUICannon = other.gameObject.GetComponent<HpUICannon>();
+                HpUISoldier hpUISoldier = other.gameObject.GetComponent<HpUISoldier>();
+                if (hpUICannon != null)
+                {
+                    hpUICannon.TakeDamage(amount: potanDamage);
+                    Debug.Log("60mm : Do Damage to Player");
 
+                }
+                else if (hpUISoldier !=null);
+                {
+                    hpUISoldier.TakeDamage(amount: potanDamage);
+                    Debug.Log("Laser : Do Damage to Player");
+                }
+                
             }
 
             Destroy(gameObject, 2f);

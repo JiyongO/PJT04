@@ -32,6 +32,7 @@ public class EnemyFire : MonoBehaviour
     private MoveControl moveCtrl;
 
     private Vector3 targetPos;
+    private bool isFire = false;
 
 
     void Start()
@@ -59,7 +60,7 @@ public class EnemyFire : MonoBehaviour
         }
         else if (!Physics.CheckSphere(transform.position, radius, 1 << layerMaskEnemy))
         {
-
+            //isFire = false;
         }
     }
 
@@ -102,6 +103,7 @@ public class EnemyFire : MonoBehaviour
             //나머지 수학적인 계산은 잘 모르겠음 ㅜㅜ
             this.elapsed_time = 0;
             StartCoroutine(ShootImpl());
+            //isFire = true;
         }
     }
 

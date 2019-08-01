@@ -8,13 +8,15 @@ public class OurPotan2 : MonoBehaviour
     public GameObject explosion;
 
     public float expRadius = 0.3f;
-    private EnemyHpUICannons enemyUI;
+    private EnemyHpUICannons enemycannonUI;
+    private EnemyHpUISoldier enemySoldierUI;
 
 
 
     void Start()
     {
-        enemyUI = GetComponent<EnemyHpUICannons>();
+        enemycannonUI = GetComponent<EnemyHpUICannons>();
+        enemySoldierUI = GetComponent<EnemyHpUISoldier>();
 
     }
 
@@ -33,23 +35,36 @@ public class OurPotan2 : MonoBehaviour
             if (Physics.CheckSphere(transform.position, expRadius, 1 << LayerMask.NameToLayer("ENEMY")))
             {
                 // Do Damage
-                EnemyHpUICannons enemyUI = other.gameObject.GetComponent<EnemyHpUICannons>();
-                if (enemyUI != null)
+                EnemyHpUICannons enemycannonUI = other.gameObject.GetComponent<EnemyHpUICannons>();
+                EnemyHpUISoldier enemySoldierUI = other.gameObject.GetComponent<EnemyHpUISoldier>();
+                if (enemycannonUI != null)
                 {
-                    enemyUI.TakeDamage(amount: potanDamage);
+                    //enemySoldierUI.
+                    enemycannonUI.TakeDamage(amount: potanDamage);
                     Debug.Log("60mm : Do Damage to Enemy");
                 }
+                else if (enemySoldierUI != null)
+                {
+                    enemySoldierUI.TaakeDamage(amount: potanDamage);
+                    Debug.Log("laser : Do Damage to Enemy");
+                }
+                {
 
+                    {
+
+                    }
+
+                }
+
+                Destroy(gameObject, 2f);
             }
-
-            Destroy(gameObject, 2f);
+            Destroy(this.gameObject, 3f);
         }
-        Destroy(this.gameObject, 3f);
-    }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, expRadius);
+         void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, expRadius);
+        }
     }
 }
 
