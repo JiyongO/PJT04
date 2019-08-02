@@ -15,14 +15,14 @@ public class EnemyHpUICannons : MonoBehaviour
     private bool isSinking;
     private bool damaged;
     private SphereCollider sphereCollider;
-    private EnemyFire enemyFire;
+    private EnemyPotanFire enemyFire;
 
     // Start is called before the first frame update
     void Start()
     {
         currentHp = cannonHp;
         sphereCollider = GetComponent<SphereCollider>();
-        enemyFire = GetComponent<EnemyFire>();
+        enemyFire = GetComponent<EnemyPotanFire>();
     }
 
     // Update is called once per frame
@@ -31,8 +31,9 @@ public class EnemyHpUICannons : MonoBehaviour
         
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage3(int amount)
     {
+        Debug.Log("피깍임");
         damaged = true;
 
         currentHp -= amount;

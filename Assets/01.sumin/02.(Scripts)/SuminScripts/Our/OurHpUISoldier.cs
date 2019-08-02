@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-public class HpUISoldier : MonoBehaviour
+public class OurHpUISoldier : MonoBehaviour
 {
     public float soldierHp = 100.0f;
     public float dicHp;
@@ -32,7 +32,7 @@ public class HpUISoldier : MonoBehaviour
 
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage2(int amount)
     {
         damaged = true;
         dicHp -= amount;

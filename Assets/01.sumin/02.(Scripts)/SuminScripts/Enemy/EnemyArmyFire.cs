@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoldierAttack : MonoBehaviour
+public class EnemyArmyFire : MonoBehaviour
 {
     private Ray ray = new Ray ();
     private RaycastHit hit;
@@ -10,49 +10,45 @@ public class SoldierAttack : MonoBehaviour
     private float maxDist = 10.0f;
     private float timeAfter;
     private float delay = 0.5f;
+    private float radius = 1.0f;
 
     private Transform tr;
     private Transform enemyTr;
+    private Collider[] coll;
 
     private LayerMask layerMaskEnemy;
     [SerializeField]
-    private MoveControl moveCtrl;
-    private Light gunLight;
-
-    private EnemyHpUICannons enemyHpUI;
 
     public Transform shootPoint;
     public int damage = 30;
-
+    private OurHpUISoldier ourHpSoldier;
     void Start()
     {
-        enemyHpUI = GetComponent<EnemyHpUICannons>();
-        moveCtrl = GetComponent<MoveControl>();
-        
         tr = GetComponent<Transform>();
-        layerMaskEnemy = LayerMask.NameToLayer("ENEMY");
-
-        gunLight = GetComponent<Light>();
+        layerMaskEnemy = LayerMask.NameToLayer("PLAYER");
     }
+        
 
     void Update()
     {
         timeAfter += Time.deltaTime;
         if (Physics.CheckSphere(transform.position, 1f, 1 << layerMaskEnemy))
         {
-            enemyTr = GameObject.FindGameObjectWithTag("ENEMY").GetComponent<Transform>();
+            enemyTr = GameObject.FindGameObjectWithTag("PLAYER").GetComponent<Transform>();
+            coll = Physics.OverlapSphere(transform.position, radius, 1 << layerMaskEnemy);
+            enemyTr = coll[0].transform;
+
             Debug.Log("Player : Enemy insight");
             tr.LookAt(enemyTr.position);
-            moveCtrl.nmAgent.speed = 0f;
-            Debug.DrawRay(ray.origin, ray.direction, Color.red);
+
+            Debug.DrawRay(ray.origin, ray.direction, Color.green);
             AttackStart();
-            Debug.Log("hit");
+            Debug.Log("적이 맞췄음");
             
         }
         else if(!Physics.CheckSphere(transform.position, 1f, 1 << layerMaskEnemy))
         {
-            enemyTr = null;
-            moveCtrl.nmAgent.speed = 0.5f;
+
         }
     }
     private void OnDrawGizmosSelected()
@@ -66,23 +62,24 @@ public class SoldierAttack : MonoBehaviour
         
         if (timeAfter > delay)
         {
-            Debug.Log("skrksek");
+            Debug.Log("적군이 쏨");
             
             timeAfter = 0f;
             //gunLight.enabled = true;
 
             ray.origin = shootPoint.position;
             ray.direction = shootPoint.forward;
+            
 
             if (Physics.Raycast(ray, out hit, 1f, 1 << layerMaskEnemy))
             {
-                Debug.DrawRay(ray.origin, ray.direction, Color.red);
-                    Debug.Log("ray");
-                EnemyHpUICannons enemyHpUI = hit.collider.GetComponent<EnemyHpUICannons>();
+                ourHpSoldier = hit.collider.GetComponent<OurHpUISoldier>();
+                Debug.DrawRay(ray.origin, ray.direction, Color.green);
+                    Debug.Log("적군 레이저");
                 
-                if(enemyHpUI != null)
+                if(ourHpSoldier != null)
                 {
-                    enemyHpUI.TakeDamage(amount: damage);
+                    ourHpSoldier.TakeDamage2(amount: damage);
                 }
                 
             }

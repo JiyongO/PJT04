@@ -15,17 +15,16 @@ public class EnemyHpUISoldier : MonoBehaviour
     private bool isSinking;
     private bool damaged;
     private SphereCollider sphereCollider;
-    private EnemyFire enemyFire;
+    //private EnemyPotanFire enemyFire;
 
     
 
     // Start is called before the first frame update
     void Start()
     {
-        SoldierHp = dicHp;
+        dicHp = SoldierHp;
         sphereCollider = GetComponent<SphereCollider>();
-        enemyFire = GetComponent<EnemyFire>();
-        
+        //enemyFire = GetComponent<EnemyPotanFire>();
     }
 
     // Update is called once per frame
@@ -34,7 +33,7 @@ public class EnemyHpUISoldier : MonoBehaviour
         
     }
 
-    public void TaakeDamage(int amount)
+    public void TakeDamage4(int amount)
     {
         damaged = true;
 
@@ -46,8 +45,6 @@ public class EnemyHpUISoldier : MonoBehaviour
         {
             Death();
         }
-
-
     }
 
  void Death()
@@ -55,7 +52,7 @@ public class EnemyHpUISoldier : MonoBehaviour
         isDead = true;
         Debug.Log("soldier Death");
         startSinking();
-        enemyFire.enabled = false;
+        //enemyFire.enabled = false;
     }
 
     public void startSinking()
