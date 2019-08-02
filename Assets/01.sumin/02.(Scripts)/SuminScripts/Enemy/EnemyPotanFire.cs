@@ -28,7 +28,7 @@ public class EnemyPotanFire : MonoBehaviour
     private float radius = 2f;
     private LayerMask layerMaskEnemy;
 
-    private MoveControl moveCtrl;
+    private MoveControl1 moveCtrl;
 
     private Vector3 targetPos;
     private Collider[] coll;
@@ -37,7 +37,7 @@ public class EnemyPotanFire : MonoBehaviour
     void Start()
     {
         tr = GetComponent<Transform>();
-        moveCtrl = GetComponent<MoveControl>();
+        moveCtrl = GetComponent<MoveControl1>();
         layerMaskEnemy = LayerMask.NameToLayer("PLAYER");
     }
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OurSoldierAttack : MonoBehaviour
+public class OurSoldierAttack1 : MonoBehaviour
 {
     private Ray ray = new Ray ();
     private RaycastHit hit;
@@ -17,7 +17,7 @@ public class OurSoldierAttack : MonoBehaviour
 
     private LayerMask layerMaskEnemy;
     [SerializeField]
-    private MoveControl1 moveCtrl;
+    private MoveControl1 moveCtrl1;
     private Collider[] coll;
 
     public Transform shootPoint;
@@ -28,7 +28,7 @@ public class OurSoldierAttack : MonoBehaviour
 
     void Start()
     {
-        moveCtrl = GetComponent<MoveControl1>();
+        moveCtrl1 = GetComponent<MoveControl1>();
         
         tr = GetComponent<Transform>();
         layerMaskEnemy = LayerMask.NameToLayer("ENEMY");
@@ -45,7 +45,7 @@ public class OurSoldierAttack : MonoBehaviour
             enemyTr = coll[0].transform;
 
             tr.LookAt(coll[0].transform.position);
-            moveCtrl.nmAgent.speed = 0f;
+            moveCtrl1.nmAgent.speed = 0f;
 
             Debug.DrawRay(ray.origin, ray.direction, Color.red);
             AttackStart();
@@ -55,7 +55,7 @@ public class OurSoldierAttack : MonoBehaviour
         else if(!Physics.CheckSphere(transform.position, 1f, 1 << layerMaskEnemy))
         {
             enemyTr = null;
-            moveCtrl.nmAgent.speed = 0.5f;
+            moveCtrl1.nmAgent.speed = 0.5f;
         }
     }
     private void OnDrawGizmosSelected()

@@ -81,8 +81,8 @@ public class LaserPointer : MonoBehaviour
         GameObject _pointer = Resources.Load<GameObject>("Pointer");
         pointer = Instantiate<GameObject>(_pointer);
         units = new GameObject[2];
-        units[0] = Resources.Load<GameObject>("Soldiers_Vive");
-        units[1] = Resources.Load<GameObject>("Cannon_Vive");
+        units[0] = Resources.Load<GameObject>("OurArmy_end");
+        units[1] = Resources.Load<GameObject>("OurCannon_end");
 
     }
 
@@ -120,19 +120,6 @@ public class LaserPointer : MonoBehaviour
             pointer.transform.position = hit.point + hit.normal * 0.01f;
             pointer.transform.rotation = Quaternion.LookRotation(hit.normal);
 
-
-            //    //현재 객체와 이전객체가 다른 경우
-            //    if (currObject != prevObject)
-            //    {
-            //        //현재 객체에 pointerEnter 이벤트 전달
-            //        ExecuteEvents.Execute(currObject
-            //                              , new PointerEventData(EventSystem.current)
-            //                              , ExecuteEvents.pointerEnterHandler);
-            //        //이전 객체에 pointerExit 이벤트 전달
-            //        ExecuteEvents.Execute(prevObject
-            //                              , new PointerEventData(EventSystem.current)
-            //                              , ExecuteEvents.pointerExitHandler);
-            //        prevObject = currObject;
         }
         Debug.DrawRay(tr.position, tr.forward * 30f, Color.green);
         if (trigger.GetStateDown(rightHand))
