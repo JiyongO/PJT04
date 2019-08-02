@@ -12,8 +12,6 @@ TagManager:
   - ENEMY
   - DICUNITS
   - CURUNITS
-  - wp
-  - st
   layers:
   - Default
   - TransparentFX
@@ -29,7 +27,7 @@ TagManager:
   - TERRAIN
   - PLAYER
   - ENEMY
-  - 
+  - MINIMAP
   - 
   - 
   - 
