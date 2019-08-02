@@ -9,6 +9,7 @@ TagManager:
   - Undefined
   - TERRAIN
   - PLAYER
+  - ENEMY
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - TERRAIN
   - PLAYER
   - ENEMY
-  - 
+  - MINIMAP
   - 
   - 
   - 
