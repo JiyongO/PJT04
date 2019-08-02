@@ -14,7 +14,6 @@ public class OurPotan2 : MonoBehaviour
 
     void Start()
     {
-        Destroy(this.gameObject, 3f);
     }
 
     // Update is called once per frame
@@ -43,9 +42,10 @@ public class OurPotan2 : MonoBehaviour
                 {
                     enemyHpSoldier.TakeDamage4(amount: potanDamage);
                 }
-                Destroy(gameObject, 2f);
             }
+                Destroy(gameObject, 0.3f);
         }
+        Destroy(this.gameObject, 0.5f);
         void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
