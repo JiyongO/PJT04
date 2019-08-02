@@ -6,7 +6,7 @@ using Valve.VR;
 public class ControllerMOVE : MonoBehaviour
 {
 
-    float speed = 0.01f;
+    float speed = 0.05f;
     [Header("Controller Setup")]
     public SteamVR_Input_Sources rightHand = SteamVR_Input_Sources.RightHand;
     public SteamVR_Input_Sources leftHand = SteamVR_Input_Sources.LeftHand;
