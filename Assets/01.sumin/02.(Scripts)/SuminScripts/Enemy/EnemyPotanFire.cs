@@ -52,10 +52,10 @@ public class EnemyPotanFire : MonoBehaviour
             end_Pos = coll[0].transform;
             //end_Pos = GameObject.FindGameObjectWithTag("PLAYER").GetComponent<Transform>();
 
-            tr.LookAt(coll[0].transform.position);
+            targetPos = new Vector3(end_Pos.position.x, tr.position.y, end_Pos.position.z);
+            tr.LookAt(targetPos);
 
             //적을 LookAt 할 때 x축, z축을 고정시킴
-            targetPos = new Vector3(end_Pos.position.x, tr.position.y, end_Pos.position.z);
 
             Shoot(height, coll[0]);
 

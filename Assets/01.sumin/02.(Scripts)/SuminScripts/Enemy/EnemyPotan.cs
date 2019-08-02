@@ -7,7 +7,7 @@ public class EnemyPotan : MonoBehaviour
     public int potanDamage = 50;
     public GameObject explosion;
 
-    private float expRadius = 0.3f;
+    private float expRadius = 0.5f;
     private OurHpUICannon hpUICannon;
     private OurHpUISoldier hpUISoldier;
 

@@ -18,8 +18,8 @@ public class CreateUnit : MonoBehaviour
     void Start()
     {
         layerMaskTerrain = LayerMask.NameToLayer("TERRAIN");
-        soldier = Resources.Load("Soldier") as GameObject;
-        cannon = Resources.Load("Cannon") as GameObject;
+        soldier = Resources.Load("OurArmy") as GameObject;
+        cannon = Resources.Load("OurCannon") as GameObject;
     }
 
     // Update is called once per frame
