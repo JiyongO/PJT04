@@ -9,6 +9,11 @@ TagManager:
   - Undefined
   - TERRAIN
   - PLAYER
+  - ENEMY
+  - DICUNITS
+  - CURUNITS
+  - wp
+  - st
   layers:
   - Default
   - TransparentFX
