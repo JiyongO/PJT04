@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletFire : MonoBehaviour
+public class EnemyPotanFire : MonoBehaviour
 {
     public Transform bulletPrefab;
     public Transform bullet;
@@ -23,7 +23,6 @@ public class BulletFire : MonoBehaviour
     private float dat;
 
     private Transform tr;
-    private Transform enemyTr;
     private float timeAfter;
     private float delay = 3f;
     private float radius = 2f;
@@ -32,13 +31,14 @@ public class BulletFire : MonoBehaviour
     private MoveControl moveCtrl;
 
     private Vector3 targetPos;
+    private Collider[] coll;
 
 
     void Start()
     {
         tr = GetComponent<Transform>();
         moveCtrl = GetComponent<MoveControl>();
-        layerMaskEnemy = LayerMask.NameToLayer("ENEMY");
+        layerMaskEnemy = LayerMask.NameToLayer("PLAYER");
     }
 
     void Update()
@@ -47,20 +47,22 @@ public class BulletFire : MonoBehaviour
         if (Physics.CheckSphere(transform.position, radius, 1 << layerMaskEnemy))
         {
             start_Pos = GetComponent<Transform>();
-            end_Pos   = GameObject.FindGameObjectWithTag("ENEMY").GetComponent<Transform>();
-            //enemyTr   = GameObject.FindGameObjectWithTag("ENEMY").GetComponent<Transform>();
-            
+            coll = Physics.OverlapSphere(transform.position, radius, 1 << layerMaskEnemy);
+
+            end_Pos = coll[0].transform;
+            //end_Pos = GameObject.FindGameObjectWithTag("PLAYER").GetComponent<Transform>();
+
+            tr.LookAt(coll[0].transform.position);
+
             //적을 LookAt 할 때 x축, z축을 고정시킴
             targetPos = new Vector3(end_Pos.position.x, tr.position.y, end_Pos.position.z);
-            tr.LookAt(targetPos);
-            Debug.Log("적찾음");
-            moveCtrl.nmAgent.speed = 0f;
-            Shoot(height);
+
+            Shoot(height, coll[0]);
 
         }
         else if (!Physics.CheckSphere(transform.position, radius, 1 << layerMaskEnemy))
         {
-            moveCtrl.nmAgent.speed = 0.5f;
+            //isFire = false;
         }
     }
 
@@ -69,7 +71,7 @@ public class BulletFire : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, radius);
     }
 
-    public void Shoot(float height)
+    public void Shoot(float height, Collider coll)
     {
         //대포 쏠때 딜레이 시간
         if (timeAfter > delay)
@@ -82,7 +84,7 @@ public class BulletFire : MonoBehaviour
             bullet.position = start_Pos.position;
 
             Vector3 startPos = start_Pos.position;
-            Vector3 endPos   = end_Pos.position;
+            Vector3 endPos = end_Pos.position;
 
             //적군 y값 계산
             var dh = endPos.y - startPos.y;
@@ -103,6 +105,7 @@ public class BulletFire : MonoBehaviour
             //나머지 수학적인 계산은 잘 모르겠음 ㅜㅜ
             this.elapsed_time = 0;
             StartCoroutine(ShootImpl());
+            //isFire = true;
         }
     }
 
@@ -117,7 +120,7 @@ public class BulletFire : MonoBehaviour
         {
             //폭탄이 최종적으로 떨어질 위치값 계산
             this.elapsed_time += Time.deltaTime;
-            var tx = startPos.x + this.tx * elapsed_time; 
+            var tx = startPos.x + this.tx * elapsed_time;
             var ty = startPos.y + this.ty * elapsed_time - 0.5f * g * elapsed_time * elapsed_time;
             var tz = startPos.z + this.tz * elapsed_time;
             var tpos = new Vector3(tx, ty, tz);

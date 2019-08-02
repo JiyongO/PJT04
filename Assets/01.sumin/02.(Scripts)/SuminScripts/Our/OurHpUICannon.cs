@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-public class HpUICannon : MonoBehaviour
+public class OurHpUICannon : MonoBehaviour
 {
     public float cannonHp = 150.0f;
     public float currentHp;
@@ -30,7 +30,7 @@ public class HpUICannon : MonoBehaviour
         
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage1(int amount)
     {
         damaged = true;
         currentHp -= amount;

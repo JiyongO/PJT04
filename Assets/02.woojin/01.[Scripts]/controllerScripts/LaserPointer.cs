@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
+using UnityEngine.UI;
+using UnityEngine.AI;
 using UnityEngine.EventSystems;
 
 public class LaserPointer : MonoBehaviour
@@ -9,6 +11,13 @@ public class LaserPointer : MonoBehaviour
     private SteamVR_Behaviour_Pose pose;
     private SteamVR_Input_Sources hand;
     private LineRenderer line;
+
+    public bool isSettingWayPoint;
+    public GameObject wayPoint;
+
+    public static List<Vector3> wpList;
+    public Canvas[] wpImage;
+    int wpImageCount;
 
     [Header("Controller Setup")]
     public SteamVR_Input_Sources rightHand = SteamVR_Input_Sources.RightHand;
@@ -34,14 +43,18 @@ public class LaserPointer : MonoBehaviour
 
     //pointer  프리팹을 저장할 변수
     private GameObject pointer;
+    private LayerMask Layer;
 
     public enum Units_TYPE
     {
         NONE = -1, DIC_UNITS = 0, CUR_UNITS = 1
     }
     public Units_TYPE currUnits = Units_TYPE.NONE;
-    
-    public GameObject[] units;
+    [SerializeField]
+    GameObject[] units;
+
+    NavMeshAgent[] navMeshAgents;
+
 
     // Start is called before the first frame update
     void Start()
@@ -49,8 +62,11 @@ public class LaserPointer : MonoBehaviour
         ray.origin = this.transform.position;
         ray.direction = this.transform.forward;
 
+        wpList = new List<Vector3>();
+
         //컨트롤러의 Transform 컴포넌트를 저장
         tr = GetComponent<Transform>();
+        Layer = LayerMask.NameToLayer("TERRAIN");
 
         //컨트롤러의 정보를 검출하기 위한 SteamVr_behaviour_pose 컴포넌트 추출
         pose = GetComponent<SteamVR_Behaviour_Pose>();
@@ -64,9 +80,12 @@ public class LaserPointer : MonoBehaviour
         //프리팹을 Resources 폴더에서 로드해 동적을 생성
         GameObject _pointer = Resources.Load<GameObject>("Pointer");
         pointer = Instantiate<GameObject>(_pointer);
-
+        units = new GameObject[2];
+        units[0] = Resources.Load<GameObject>("Soldiers_Vive");
+        units[1] = Resources.Load<GameObject>("Cannon_Vive");
 
     }
+
     void CreatedLineRenderer()
     {
         //LineRenderer 생성
@@ -90,37 +109,37 @@ public class LaserPointer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Physics.Raycast(tr.position, tr.forward, out hit, maxDistance))
-        //{
+        if (Physics.Raycast(tr.position, tr.forward, out hit, maxDistance))
+        {
+            //현재 레이저 포인터로 가리키는 객체를 저장
+            currObject = hit.collider.gameObject;
+            //    //라인의 끝점의 위치를 레이캐스팅한 지점의 좌표로 변경
+            line.SetPosition(1, new Vector3(0, 0, hit.distance));
+
+            //   //포인터의 위치와 각도를 설정
+            pointer.transform.position = hit.point + hit.normal * 0.01f;
+            pointer.transform.rotation = Quaternion.LookRotation(hit.normal);
 
 
-        //    //현재 객체와 이전객체가 다른 경우
-        //    if (currObject != prevObject)
-        //    {
-        //        //현재 객체에 pointerEnter 이벤트 전달
-        //        ExecuteEvents.Execute(currObject
-        //                              , new PointerEventData(EventSystem.current)
-        //                              , ExecuteEvents.pointerEnterHandler);
-        //        //이전 객체에 pointerExit 이벤트 전달
-        //        ExecuteEvents.Execute(prevObject
-        //                              , new PointerEventData(EventSystem.current)
-        //                              , ExecuteEvents.pointerExitHandler);
-        //        prevObject = currObject;
-        //    }
+            //    //현재 객체와 이전객체가 다른 경우
+            //    if (currObject != prevObject)
+            //    {
+            //        //현재 객체에 pointerEnter 이벤트 전달
+            //        ExecuteEvents.Execute(currObject
+            //                              , new PointerEventData(EventSystem.current)
+            //                              , ExecuteEvents.pointerEnterHandler);
+            //        //이전 객체에 pointerExit 이벤트 전달
+            //        ExecuteEvents.Execute(prevObject
+            //                              , new PointerEventData(EventSystem.current)
+            //                              , ExecuteEvents.pointerExitHandler);
+            //        prevObject = currObject;
+        }
         Debug.DrawRay(tr.position, tr.forward * 30f, Color.green);
         if (trigger.GetStateDown(rightHand))
         {
             Debug.Log("DDDDDDD");
-            if (Physics.Raycast(tr.position, tr.forward, out hit, maxDistance, 1 << 8))
+            if (Physics.Raycast(tr.position, tr.forward, out hit, maxDistance, 1 << 5))
             {
-                //현재 레이저 포인터로 가리키는 객체를 저장
-               currObject = hit.collider.gameObject;
-                //    //라인의 끝점의 위치를 레이캐스팅한 지점의 좌표로 변경
-                line.SetPosition(1, new Vector3(0, 0, hit.distance));
-
-                //   //포인터의 위치와 각도를 설정
-                pointer.transform.position = hit.point + hit.normal * 0.01f;
-                pointer.transform.rotation = Quaternion.LookRotation(hit.normal);
 
                 Debug.Log(hit.collider.gameObject.name);
                 switch (hit.collider.tag)
@@ -134,18 +153,54 @@ public class LaserPointer : MonoBehaviour
                         currUnits = Units_TYPE.CUR_UNITS;
                         Debug.Log("땅크");
                         break;
+                    case "wp":
+                        isSettingWayPoint = !isSettingWayPoint;
+                        Debug.Log(isSettingWayPoint);
+                        break;
+                    case "st":
+                        Debug.Log("스타떠");
+                        StartSimulation();
+                        break;
+
                 }
 
             }
-            if(Physics.Raycast(tr.position, tr.forward, out hit, maxDistance, 1<<9)&& trigger.GetStateDown(rightHand))
+            if (Physics.Raycast(tr.position, tr.forward, out hit, maxDistance, 1 << Layer)
+                                                    && trigger.GetStateDown(rightHand))
             {
-                                Instantiate(units[(int)currUnits], hit.point, Quaternion.identity);
-                                  
-            }
-           
+                Debug.Log("ray Hit Ground");
+                if (isSettingWayPoint)
+                {
+                    Debug.Log("clicked for wp");
 
-        } 
+                    {
+                        Debug.Log("rayHit for wp");
+                        wpList.Add(hit.point);
+                        Instantiate(wayPoint, hit.point, Quaternion.identity);
+                        Instantiate(wpImage[wpImageCount], (hit.point + new Vector3(0, 0.8f, 0)), Quaternion.identity);
+                        wpImageCount++;
+
+                    }
+                }
+
+
+                else
+                {
+                    Debug.Log("rigtHand " + (int)currUnits);
+                    Instantiate(units[(int)currUnits], hit.point, Quaternion.identity);
+                }
+            }
+
+
+        }
 
     }
+    public void StartSimulation()
+    {
+        navMeshAgents = FindObjectsOfType<NavMeshAgent>();
+        foreach (var nmAgent in navMeshAgents)
+        {
+            nmAgent.SendMessage("MoveArmy");
+        }
+    }
 }
-
