@@ -25,6 +25,10 @@ public class LaserPointer : MonoBehaviour
     //트리거  버튼의 클릭 이벤트에 반응할 액션
     public SteamVR_Action_Boolean trigger = SteamVR_Actions.default_InteractUI;
 
+    private int UnitsCount = 0;
+
+    bool isCreate = false;
+
     //라인의 최대 유효 거리
     public float maxDistance = 30.0f;
     //라인의 색상
@@ -44,6 +48,9 @@ public class LaserPointer : MonoBehaviour
     //pointer  프리팹을 저장할 변수
     private GameObject pointer;
     private LayerMask Layer;
+    int s = 0;
+    int t = 0;
+
 
     public enum Units_TYPE
     {
@@ -75,6 +82,8 @@ public class LaserPointer : MonoBehaviour
 
         // lineRenderer 생성
         CreatedLineRenderer();
+
+
 
 
         //프리팹을 Resources 폴더에서 로드해 동적을 생성
@@ -127,7 +136,7 @@ public class LaserPointer : MonoBehaviour
             Debug.Log("DDDDDDD");
             if (Physics.Raycast(tr.position, tr.forward, out hit, maxDistance, 1 << 5))
             {
-
+                
                 Debug.Log(hit.collider.gameObject.name);
                 switch (hit.collider.tag)
                 {
@@ -174,20 +183,48 @@ public class LaserPointer : MonoBehaviour
                 else
                 {
                     Debug.Log("rigtHand " + (int)currUnits);
-                    Instantiate(units[(int)currUnits], hit.point, Quaternion.identity);
+                  
+                    switch(currUnits)
+                    {
+                        case Units_TYPE.CUR_UNITS:
+                            if(t < 10)
+                            {
+                                Instantiate(units[(int)currUnits], hit.point, Quaternion.identity);
+                                t++;
+                            }
+                            break;
+                        case Units_TYPE.DIC_UNITS:
+                            if(s<10)
+                            {
+                                Instantiate(units[(int)currUnits], hit.point, Quaternion.identity);
+                                s++;
+                            }
+                            break;
+                            
+                    }
+                    
+                    
+
+
                 }
             }
+            }
+            }
+            
+          public  void StartSimulation()
+            {
+                navMeshAgents = FindObjectsOfType<NavMeshAgent>();
+                foreach (var nmAgent in navMeshAgents)
+                {
+                    nmAgent.SendMessage("MoveArmy");
+                }
+            }
+    
 
-
-        }
 
     }
-    public void StartSimulation()
-    {
-        navMeshAgents = FindObjectsOfType<NavMeshAgent>();
-        foreach (var nmAgent in navMeshAgents)
-        {
-            nmAgent.SendMessage("MoveArmy");
-        }
-    }
-}
+
+        
+   
+    
+
