@@ -45,6 +45,8 @@ public class LaserPointer : MonoBehaviour
     public GameObject prevObject;
     public GameObject currObject;
 
+    public GameObject SoldierText;
+
     //pointer  프리팹을 저장할 변수
     private GameObject pointer;
     private LayerMask Layer;
@@ -157,6 +159,11 @@ public class LaserPointer : MonoBehaviour
                         Debug.Log("스타떠");
                         StartSimulation();
                         break;
+                    case "im":
+                        Debug.Log("생성");
+                        setUi();
+                        break;
+
 
                 }
 
@@ -219,7 +226,10 @@ public class LaserPointer : MonoBehaviour
                     nmAgent.SendMessage("MoveArmy");
                 }
             }
-    
+    void setUi()
+    {
+        SoldierText.SetActive(true);
+    }
 
 
     }

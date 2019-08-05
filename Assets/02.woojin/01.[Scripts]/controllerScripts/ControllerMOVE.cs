@@ -41,11 +41,11 @@ public class ControllerMOVE : MonoBehaviour
         }
         if (grabGrip.GetState(leftHand))
         {
-            transform.Translate(transform.up * speed);
+            transform.Translate(-transform.up * speed);
         }
         if (grabGrip.GetState(rightHand))
         {
-            transform.Translate(-transform.up * speed);
+            transform.Translate(transform.up * speed);
         }
     }
 }
