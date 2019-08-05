@@ -18,6 +18,8 @@ public class LaserPointer : MonoBehaviour
 
     public static List<Vector3> wpList;
     public GameObject wpImage;
+
+    public Animator anim;
    
 
     [Header("Controller Setup")]
@@ -54,7 +56,7 @@ public class LaserPointer : MonoBehaviour
     int s = 0;
     int t = 0;
 
-    public Animator anim;
+    
 
 
     public enum Units_TYPE
@@ -98,6 +100,7 @@ public class LaserPointer : MonoBehaviour
         units[0] = Resources.Load<GameObject>("OurArmy_end");
         units[1] = Resources.Load<GameObject>("OurCannon_end");
 
+        anim = GetComponent<Animator>();
     }
 
     void CreatedLineRenderer()
@@ -170,7 +173,9 @@ public class LaserPointer : MonoBehaviour
                         
                         break;
                     case "can":
-                        SoldierText.SetActive(false);
+                       
+                      SoldierText.SetActive(false);
+
                         break;
                     case "sq":
                         Debug.Log("다시시작");
