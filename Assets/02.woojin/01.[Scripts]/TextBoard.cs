@@ -33,7 +33,6 @@ public class TextBoard : MonoBehaviour
     //모든 텍스트 호출완료시 탈출
     void Update()
     {
-
         if (text_exit == true)
         {
             gameObject.SetActive(false);
@@ -47,7 +46,8 @@ public class TextBoard : MonoBehaviour
     public void End_Typing()
     {
         Debug.Log("``````````");
-       
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
             Debug.Log("FJGJKFGJF");
             //다음 텍스트 호출
             if (text_full == true)
@@ -64,7 +64,7 @@ public class TextBoard : MonoBehaviour
                 text_cut = true;
             }
         }
-    
+    }
     //텍스트 시작호출
     public void Get_Typing(int _dialog_cnt, string[] _fullText)
     {
@@ -88,10 +88,8 @@ public class TextBoard : MonoBehaviour
         //모든텍스트 종료
         if (cnt >= dialog_cnt)
         {
-            
             text_exit = true;
             StopCoroutine("showText");
-
         }
         else
         {
@@ -107,13 +105,13 @@ public class TextBoard : MonoBehaviour
                 }
 
                 //단어하나씩출력
-                currentText =  _fullText[cnt].Substring(0, i + 1);
+                currentText = "이병 최우진 : " + _fullText[cnt].Substring(0, i + 1);
                 this.GetComponent<Text>().text = currentText;
                 yield return new WaitForSeconds(delay);
             }
             //탈출시 모든 문자출력
             Debug.Log("Typing 종료");
-            this.GetComponent<Text>().text =  _fullText[cnt];
+            this.GetComponent<Text>().text = "이병 최우진 : " + _fullText[cnt];
             yield return new WaitForSeconds(Skip_delay);
 
             //스킵_지연후 종료

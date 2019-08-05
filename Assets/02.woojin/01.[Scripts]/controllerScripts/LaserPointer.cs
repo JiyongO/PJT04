@@ -16,8 +16,8 @@ public class LaserPointer : MonoBehaviour
     public GameObject wayPoint;
 
     public static List<Vector3> wpList;
-    public Canvas[] wpImage;
-    int wpImageCount;
+    public GameObject wpImage;
+   
 
     [Header("Controller Setup")]
     public SteamVR_Input_Sources rightHand = SteamVR_Input_Sources.RightHand;
@@ -180,8 +180,8 @@ public class LaserPointer : MonoBehaviour
                         Debug.Log("rayHit for wp");
                         wpList.Add(hit.point);
                         Instantiate(wayPoint, hit.point, Quaternion.identity);
-                        Instantiate(wpImage[wpImageCount], (hit.point + new Vector3(0, 0.8f, 0)), Quaternion.identity);
-                        wpImageCount++;
+                        Instantiate(wpImage, (hit.point + new Vector3(0, 0.8f, 0)), Quaternion.identity);
+                        
 
                     }
                 }
@@ -228,11 +228,14 @@ public class LaserPointer : MonoBehaviour
             }
     void setUi()
     {
+        tr.LookAt(Camera.main.transform);
         SoldierText.SetActive(true);
     }
 
+ 
 
-    }
+
+}
 
         
    
