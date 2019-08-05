@@ -6800,7 +6800,7 @@ GameObject:
   - component: {fileID: 3767722254246221123}
   - component: {fileID: 6347196823643185302}
   - component: {fileID: 6347196823643185303}
-  - component: {fileID: 5656535891441607835}
+  - component: {fileID: 1460060558847572164}
   m_Layer: 13
   m_Name: EnemyRTS
   m_TagString: ENEMY
@@ -6870,7 +6870,7 @@ MonoBehaviour:
   health: {fileID: 2045509944984421388}
   healthCanvas: {fileID: 8876772448940525198}
   deathAClip: {fileID: 8300000, guid: 988970fe35e595a4eacbc427ea37e553, type: 3}
---- !u!82 &5656535891441607835
+--- !u!82 &1460060558847572164
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6880,9 +6880,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 988970fe35e595a4eacbc427ea37e553, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0

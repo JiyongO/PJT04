@@ -58,6 +58,5 @@ public class ArtilleryFire : MonoBehaviour
     private void OnDisable()
     {
         GameMgr.cannons.Remove(gameObject);
-        GetComponent<AudioSource>().PlayOneShot(deathAClip);
     }
 }

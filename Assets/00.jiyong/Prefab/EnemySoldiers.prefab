@@ -3374,7 +3374,7 @@ GameObject:
   - component: {fileID: 2006881800242814927}
   - component: {fileID: 8990719068495609678}
   - component: {fileID: 8420047108690810919}
-  - component: {fileID: 359974725881816943}
+  - component: {fileID: 8576706547003346000}
   m_Layer: 13
   m_Name: EnemySoldiers
   m_TagString: ENEMY
@@ -3466,7 +3466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f05fdda4f06074e95c9ae29313ea48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!82 &359974725881816943
+--- !u!82 &8576706547003346000
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3476,9 +3476,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e68224e64e909e74f8c9eaf11f87b1b6, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0

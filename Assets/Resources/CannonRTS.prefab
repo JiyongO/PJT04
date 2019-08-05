@@ -416,6 +416,7 @@ MonoBehaviour:
   potan: {fileID: 792335961357128142, guid: 139d0aab25eb2704e978d661e1036b1a, type: 3}
   FirePoint: {fileID: 6239193024015855936}
   force: 200
+  deathAClip: {fileID: 0}
 --- !u!136 &3041115735066934141
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -444,6 +445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 1363355744}
   healthCanvas: {fileID: 855514199}
+  deathAClip: {fileID: 8300000, guid: 988970fe35e595a4eacbc427ea37e553, type: 3}
 --- !u!114 &207100668
 MonoBehaviour:
   m_ObjectHideFlags: 0

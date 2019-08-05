@@ -200,6 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 4990280859108858457}
   healthCanvas: {fileID: 1358207578972450302}
+  deathAClip: {fileID: 8300000, guid: e68224e64e909e74f8c9eaf11f87b1b6, type: 3}
 --- !u!114 &5193307232240272125
 MonoBehaviour:
   m_ObjectHideFlags: 0

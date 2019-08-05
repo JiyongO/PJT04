@@ -26,7 +26,6 @@ public class SoldierHealth : MonoBehaviour
         }
         else
         {
-            GetComponent<AudioSource>().PlayOneShot(deathAClip);
             Destroy(gameObject);
         }
     }

@@ -55,6 +55,5 @@ public class EnemyArtilleryFire : MonoBehaviour
     private void OnDisable()
     {
         GameMgr.enemyCannons.Remove(gameObject);
-        GetComponent<AudioSource>().Play();
     }
 }
