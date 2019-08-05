@@ -65,3 +65,14 @@ Assets/02.woojin.meta~HEAD_1
 Assets/02.woojin.meta~HEAD_0
 Assets/02.woojin.meta~HEAD
 *.meta~HEAD_2
+Assets/00.jiyong/Anim/Victory.anim.meta
+Assets/00.jiyong/Prefab/WayPoint_Pin.prefab.meta
+Assets/00.jiyong/Prefab/WP_Attack.prefab.meta
+Assets/00.jiyong/Scene/RTSScene.unity
+Assets/02.woojin/00.[Scene]/MainScene 1.unity
+Assets/02.woojin/01.[Scripts]/controllerScripts/ControllerMOVE.cs
+Assets/02.woojin/01.[Scripts]/controllerScripts/LaserPointer.cs
+Assets/02.woojin/01.[Scripts]/TextBoard.cs
+Assets/02.woojin/01.[Scripts]/TextBoard.cs.meta
+Assets/06.Sounds/Rader.meta
+ProjectSettings/TagManager.asset
