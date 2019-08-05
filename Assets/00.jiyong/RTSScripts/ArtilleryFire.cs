@@ -12,6 +12,7 @@ public class ArtilleryFire : MonoBehaviour
     float radius = 2.2f;
     LayerMask layerMaskPlayer;
     Collider[] colliders;
+    public AudioClip deathAClip;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,10 +34,16 @@ public class ArtilleryFire : MonoBehaviour
     {
         if (timeAfter > delay)
         {
+            //old version
+            //{
+            //    transform.LookAt(col.transform);
+            //    GameObject potanInstance;
+            //    potanInstance = Instantiate(potan, FirePoint.position, FirePoint.rotation);
+            //    potanInstance.GetComponent<Rigidbody>().AddForce(FirePoint.forward * force);
+            //    timeAfter = 0f;
+            //}
             transform.LookAt(col.transform);
-            GameObject potanInstance;
-            potanInstance = Instantiate(potan, FirePoint.position, FirePoint.rotation);
-            potanInstance.GetComponent<Rigidbody>().AddForce(FirePoint.forward * force);
+            Instantiate(potan, col.transform.position + Vector3.up * 0.2f, Quaternion.identity);
             timeAfter = 0f;
         }
     }
@@ -46,10 +53,11 @@ public class ArtilleryFire : MonoBehaviour
     }
     private void OnEnable()
     {
-            GameMgr.cannons.Add(gameObject);
+        GameMgr.cannons.Add(gameObject);
     }
     private void OnDisable()
     {
-            GameMgr.cannons.Remove(gameObject);
+        GameMgr.cannons.Remove(gameObject);
+        GetComponent<AudioSource>().PlayOneShot(deathAClip);
     }
 }
