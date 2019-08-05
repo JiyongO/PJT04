@@ -12,6 +12,9 @@ TagManager:
   - ENEMY
   - DICUNITS
   - CURUNITS
+  - st
+  - wp
+  - im
   layers:
   - Default
   - TransparentFX
