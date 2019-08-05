@@ -85,4 +85,13 @@ public class EnemyArmyFire : MonoBehaviour
             }
         }
     }
+    private void OnEnable()
+    {
+        GameMgr_.enemySoldiers.Add(gameObject);
+    }
+    private void OnDisable()
+    {
+        GameMgr_.enemySoldiers.Remove(gameObject);
+    }
+
 }

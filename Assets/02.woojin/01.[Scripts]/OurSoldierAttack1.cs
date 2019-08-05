@@ -96,4 +96,13 @@ public class OurSoldierAttack1 : MonoBehaviour
             }
         }
     }
+    private void OnEnable()
+    {
+        GameMgr_.soldiers.Add(gameObject);
+    }
+
+    private void OnDisable()
+    {
+        GameMgr_.soldiers.Remove(gameObject);
+    }
 }

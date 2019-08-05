@@ -133,4 +133,13 @@ public class OurPotanFire1 : MonoBehaviour
             yield return null;
         }
     }
+    private void OnEnable()
+    {
+        GameMgr_.cannons.Add(gameObject);
+    }
+
+    private void OnDisable()
+    {
+        GameMgr_.cannons.Remove(gameObject);
+    }
 }

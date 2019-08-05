@@ -134,4 +134,15 @@ public class EnemyPotanFire : MonoBehaviour
             yield return null;
         }
     }
+    private void OnEnable()
+    {
+        GameMgr_.enemyCannons.Add(gameObject);
+    }
+
+    private void OnDisable()
+    {
+        GameMgr_.enemyCannons.Remove(gameObject);
+    }
+
+
 }

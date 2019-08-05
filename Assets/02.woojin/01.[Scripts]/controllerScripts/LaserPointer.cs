@@ -5,6 +5,7 @@ using Valve.VR;
 using UnityEngine.UI;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class LaserPointer : MonoBehaviour
 {
@@ -161,9 +162,17 @@ public class LaserPointer : MonoBehaviour
                         break;
                     case "im":
                         Debug.Log("생성");
-                        setUi();
+                        tr.LookAt(Camera.main.transform);
+                        SoldierText.SetActive(true);
+                        
                         break;
-
+                    case "can":
+                        SoldierText.SetActive(false);
+                        break;
+                    case "sq":
+                        Debug.Log("다시시작");
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().name,LoadSceneMode.Single);
+                        break;
 
                 }
 
@@ -226,11 +235,7 @@ public class LaserPointer : MonoBehaviour
                     nmAgent.SendMessage("MoveArmy");
                 }
             }
-    void setUi()
-    {
-        tr.LookAt(Camera.main.transform);
-        SoldierText.SetActive(true);
-    }
+  
 
  
 
