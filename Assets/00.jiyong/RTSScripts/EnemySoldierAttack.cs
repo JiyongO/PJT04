@@ -56,5 +56,6 @@ public class EnemySoldierAttack : MonoBehaviour
     private void OnDisable()
     {
         GameMgr.enemySoldiers.Remove(gameObject);
+        GetComponent<AudioSource>().Play();
     }
 }

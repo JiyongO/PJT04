@@ -8,6 +8,7 @@ public class ArtilleryHealth : MonoBehaviour
     public Image health;
     public Canvas healthCanvas;
     Quaternion startRot;
+    public AudioClip deathAClip;
     private void Start()
     {
         startRot = healthCanvas.transform.rotation;
@@ -25,6 +26,7 @@ public class ArtilleryHealth : MonoBehaviour
         }
         else
         {
+            GetComponent<AudioSource>().PlayOneShot(deathAClip);
             Destroy(gameObject);
         }
     }
