@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class ArtilleryHealth : MonoBehaviour
 {
+    public delegate void ArtilleryDie();
+    public static event ArtilleryDie OnArtilleryDie;
+
     public Image health;
     public Canvas healthCanvas;
     Quaternion startRot;
@@ -26,7 +29,7 @@ public class ArtilleryHealth : MonoBehaviour
         }
         else
         {
-            GetComponent<AudioSource>().PlayOneShot(deathAClip);
+            OnArtilleryDie?.Invoke();
             Destroy(gameObject);
         }
     }

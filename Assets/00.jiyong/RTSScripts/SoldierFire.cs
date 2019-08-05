@@ -8,10 +8,12 @@ public class SoldierFire : MonoBehaviour
     float timeAfter;
     float delay = 1f;
     Animator animator;
+    AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -26,6 +28,7 @@ public class SoldierFire : MonoBehaviour
     }
     void FireBullet()
     {
-        Instantiate(bullet, transform.position + Vector3.up * 0.2f, transform.rotation);
+        audioSource.Play();
+        Instantiate(bullet, transform.position + Vector3.up * 0.1f, transform.rotation);
     }
 }

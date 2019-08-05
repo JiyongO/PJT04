@@ -30,48 +30,50 @@ public class MoveCtrl : MonoBehaviour
     {
         if (selectableScript.selectionCircle != null)
         {
-            wp_Attack.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.S))
             {
-                isKeyA_Pressed = true;
-                Debug.Log("A pressed");
-                return;
+                Debug.Log("S pressed");
+                isMoving = false;
+                nmAgent.isStopped = true;
+                wp_Attack.SetActive(false);
             }
-            if (isKeyA_Pressed)
-            {
-                if (Input.GetMouseButtonDown(1))
-                {
-                    Debug.Log("Soldier Attacking");
-                    isKeyA_Pressed = false;
-                    isMoving = false;
-                    Move();
-                    MakeAttackPin();
-                    audioSource.Play();
-                }
-                else if (Input.GetMouseButtonDown(0))
-                {
-                    isKeyA_Pressed = false;
-                    Debug.Log("A released");
-                }
-            }
-            else if (!isKeyA_Pressed && Input.GetMouseButtonDown(1))
+            if (!isKeyA_Pressed && Input.GetMouseButtonDown(1))
             {
                 Debug.Log("Soldier Move");
                 isMoving = true;
                 Move();
                 audioSource.Play();
+                wp_Attack.SetActive(false);
             }
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                isMoving = false;
-                nmAgent.isStopped = true;
-            }
+                if (Input.GetKeyDown(KeyCode.A))
+                {
+                    isKeyA_Pressed = true;
+                    Debug.Log("A pressed");
+                    return;
+                }
+            //    if (isKeyA_Pressed)
+            //    {
+            //        if (Input.GetMouseButtonDown(1))
+            //        {
+            //            Debug.Log("Soldier Attacking");
+            //            isKeyA_Pressed = false;
+            //            isMoving = false;
+            //            Move();
+            //            MakeAttackPin();
+            //            audioSource.Play();
+            //        }
+            //        else if (Input.GetMouseButtonDown(0))
+            //        {
+            //            isKeyA_Pressed = false;
+            //            Debug.Log("A released");
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    wp_Attack.SetActive(false);
         }
-        else
-        {
-            wp_Attack.SetActive(false);
         }
-    }
     void Move()
     {
         nmAgent.isStopped = false;
@@ -98,6 +100,7 @@ public class MoveCtrl : MonoBehaviour
             }
             else
             {
+                wp_Attack.SetActive(true);
                 wp_Attack.transform.position = hit.point;
             }
         }    

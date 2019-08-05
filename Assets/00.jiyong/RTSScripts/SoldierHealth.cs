@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class SoldierHealth : MonoBehaviour
 {
+    public delegate void SoldierDie();
+    public static event SoldierDie OnSoldierDie;
+
     public Image health;
     public Canvas healthCanvas;
     Quaternion startRot;
@@ -26,6 +29,8 @@ public class SoldierHealth : MonoBehaviour
         }
         else
         {
+            if (OnSoldierDie != null)
+                OnSoldierDie();
             Destroy(gameObject);
         }
     }
