@@ -33,10 +33,14 @@ public class EnemyArtilleryFire : MonoBehaviour
     {
         if (timeAfter > delay)
         {
+            //transform.LookAt(col.transform);
+            //GameObject potanInstance;
+            //potanInstance = Instantiate(potan, FirePoint.position, FirePoint.rotation);
+            //potanInstance.GetComponent<Rigidbody>().AddForce(FirePoint.forward * force);
+            //timeAfter = 0f;
+
             transform.LookAt(col.transform);
-            GameObject potanInstance;
-            potanInstance = Instantiate(potan, FirePoint.position, FirePoint.rotation);
-            potanInstance.GetComponent<Rigidbody>().AddForce(FirePoint.forward * force);
+            Instantiate(potan, col.transform.position + Vector3.up * 0.2f, Quaternion.identity);
             timeAfter = 0f;
         }
     }
@@ -46,10 +50,11 @@ public class EnemyArtilleryFire : MonoBehaviour
     }
     private void OnEnable()
     {
-            GameMgr.enemyCannons.Add(gameObject);
+        GameMgr.enemyCannons.Add(gameObject);
     }
     private void OnDisable()
     {
-            GameMgr.enemyCannons.Remove(gameObject);
+        GameMgr.enemyCannons.Remove(gameObject);
+        GetComponent<AudioSource>().Play();
     }
 }

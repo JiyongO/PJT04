@@ -12,6 +12,7 @@ public class SoldiersAttack : MonoBehaviour
     int layerPlayer;
     MoveCtrl moveCtrl;
     float speed = 0.5f;
+    public AudioClip deathAClip;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +44,7 @@ public class SoldiersAttack : MonoBehaviour
             if (colliders != null)
             {
                 transform.LookAt(colliders[0].transform.position);
-                navMeshAgent.speed = 0;
+                navMeshAgent.isStopped = true;
                 foreach (var animator in anim)
                 {
                     animator.SetBool("Fire", true);
@@ -53,7 +54,7 @@ public class SoldiersAttack : MonoBehaviour
         }
         else
         {
-            navMeshAgent.speed = speed;
+            navMeshAgent.isStopped = false;
             foreach (var animator in anim)
             {
                 animator.SetBool("Fire", false);
@@ -67,5 +68,6 @@ public class SoldiersAttack : MonoBehaviour
     private void OnDisable()
     {
         GameMgr.soldiers.Remove(gameObject);
+        GetComponent<AudioSource>().PlayOneShot(deathAClip);
     }
 }
