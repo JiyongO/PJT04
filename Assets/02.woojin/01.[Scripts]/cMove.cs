@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class cMove : MonoBehaviour
 {
-
-    public GameObject Soldier;
+    
     Animator anim;
 
     bool Ischeering;

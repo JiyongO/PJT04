@@ -54,6 +54,8 @@ public class LaserPointer : MonoBehaviour
     int s = 0;
     int t = 0;
 
+    public Animator anim;
+
 
     public enum Units_TYPE
     {
@@ -164,6 +166,7 @@ public class LaserPointer : MonoBehaviour
                         Debug.Log("생성");
                         tr.LookAt(Camera.main.transform);
                         SoldierText.SetActive(true);
+                        anim.SetBool("IsCheering", true);
                         
                         break;
                     case "can":
@@ -173,6 +176,7 @@ public class LaserPointer : MonoBehaviour
                         Debug.Log("다시시작");
                         SceneManager.LoadScene(SceneManager.GetActiveScene().name,LoadSceneMode.Single);
                         break;
+                        
 
                 }
 
