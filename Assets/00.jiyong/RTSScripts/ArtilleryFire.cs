@@ -11,6 +11,7 @@ public class ArtilleryFire : MonoBehaviour
     float radius = 2.2f;
     LayerMask layerMaskPlayer;
     Collider[] colliders;
+    public AudioClip aClip_Rdy;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +45,7 @@ public class ArtilleryFire : MonoBehaviour
     private void OnEnable()
     {
         GameMgr.cannons.Add(gameObject);
+        GetComponent<AudioSource>().PlayOneShot(aClip_Rdy);
     }
     private void OnDisable()
     {

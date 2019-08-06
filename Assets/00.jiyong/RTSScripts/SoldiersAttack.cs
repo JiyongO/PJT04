@@ -11,7 +11,7 @@ public class SoldiersAttack : MonoBehaviour
     Collider[] colliders;
     int layerPlayer;
     MoveCtrl moveCtrl;
-    public AudioClip gunFireClip;
+    public AudioClip aClip_Rdy;
 
     // Start is called before the first frame update
     void Start()
@@ -63,6 +63,7 @@ public class SoldiersAttack : MonoBehaviour
     private void OnEnable()
     {
         GameMgr.soldiers.Add(gameObject);
+        GetComponent<AudioSource>().PlayOneShot(aClip_Rdy);
     }
     private void OnDisable()
     {

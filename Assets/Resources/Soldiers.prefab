@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26ff46fa4ebe07649bebd13e35d2c92f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunFireClip: {fileID: 0}
+  aClip_Rdy: {fileID: 8300000, guid: bbb64940cae0f634b868b083b59489da, type: 3}
 --- !u!136 &6523162543755778611
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -180,7 +180,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3856499252008787418}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.2
   m_Height: 0.5
@@ -200,7 +200,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 4990280859108858457}
   healthCanvas: {fileID: 1358207578972450302}
-  deathAClip: {fileID: 8300000, guid: e68224e64e909e74f8c9eaf11f87b1b6, type: 3}
 --- !u!114 &5193307232240272125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,7 +225,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: cf4d6b5b24af45f42a9a46222cd8abf6, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.704
+  m_Volume: 0.432
   m_Pitch: 1
   Loop: 0
   Mute: 0

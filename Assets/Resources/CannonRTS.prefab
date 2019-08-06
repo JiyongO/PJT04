@@ -415,8 +415,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   potan: {fileID: 792335961357128142, guid: 139d0aab25eb2704e978d661e1036b1a, type: 3}
   FirePoint: {fileID: 6239193024015855936}
-  force: 200
-  deathAClip: {fileID: 0}
+  aClip_Rdy: {fileID: 8300000, guid: 78d622f6d4f88ef489faa4c143ef5160, type: 3}
 --- !u!136 &3041115735066934141
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -445,7 +444,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 1363355744}
   healthCanvas: {fileID: 855514199}
-  deathAClip: {fileID: 8300000, guid: 988970fe35e595a4eacbc427ea37e553, type: 3}
 --- !u!114 &207100668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,9 +483,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: cf4d6b5b24af45f42a9a46222cd8abf6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e4131a944074e9740a283e4d36c0457b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.38
   m_Pitch: 1
   Loop: 0
   Mute: 0
